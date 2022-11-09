@@ -1,0 +1,1102 @@
+{
+  "resourceType": "Bundle",
+  "id": "638973",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2022-11-03T20:43:58.028+00:00",
+    "source": "#f831a6aa-30af-4c",
+    "profile": [
+      "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralMessageBundle"
+    ]
+  },
+  "type": "message",
+  "entry": [
+    {
+      "fullUrl": "MessageHeader/cd418431-f938-4104-bcb6-9d3dffb9b773",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "cd418431-f938-4104-bcb6-9d3dffb9b773",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralMessageHeader"
+          ]
+        },
+        "eventCoding": {
+          "system": "http://terminology.hl7.org/CodeSystem/v2-0003",
+          "code": "I12",
+          "display": "REF/RRI - Patient referral"
+        },
+        "destination": [
+          {
+            "endpoint": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/$process-message",
+            "receiver": {
+              "reference": "PractitionerRole/638173",
+              "type": "PractitionerRole"
+            }
+          }
+        ],
+        "sender": {
+          "reference": "https://launch.smarthealthit.org/v/r4/fhir/PractitionerRole/1387129"
+        },
+        "source": {
+          "endpoint": "https://apps.hdap.gatech.edu/bser-engine/fhir/$process-message"
+        },
+        "focus": [
+          {
+            "reference": "Task/638972"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Task/638972",
+      "resource": {
+        "resourceType": "Task",
+        "id": "638972",
+        "meta": {
+          "versionId": "1",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralTask"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "PLAC"
+                }
+              ]
+            },
+            "system": "urn:bser:request:id",
+            "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+            "assigner": {
+              "reference": "Organization/638965"
+            }
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "FILL"
+                }
+              ]
+            },
+            "system": "urn:bser:request:id",
+            "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+            "assigner": {
+              "reference": "Organization/638171"
+            }
+          }
+        ],
+        "status": "requested",
+        "businessStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/bser/CodeSystem/TaskBusinessStatusCS",
+              "code": "7.0",
+              "display": "Service Request Fulfillment Completed"
+            }
+          ]
+        },
+        "intent": "order",
+        "focus": {
+          "reference": "ServiceRequest/638963"
+        },
+        "authoredOn": "2022-11-03T20:43:57+00:00",
+        "requester": {
+          "reference": "https://launch.smarthealthit.org/v/r4/fhir/PractitionerRole/1387129"
+        },
+        "owner": {
+          "reference": "PractitionerRole/638173",
+          "type": "PractitionerRole"
+        }
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/ServiceRequest/638963",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "638963",
+        "meta": {
+          "versionId": "3",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralServiceRequest"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "PLAC"
+                }
+              ]
+            },
+            "system": "urn:bser:request:id",
+            "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+            "assigner": {
+              "reference": "Organization/638965"
+            }
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "FILL"
+                }
+              ]
+            },
+            "system": "urn:bser:request:id",
+            "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+            "assigner": {
+              "reference": "Organization/638171"
+            }
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "3457005",
+              "display": "Patient referral (procedure)"
+            }
+          ],
+          "text": "Draft BSeR Referral"
+        },
+        "orderDetail": [
+          {
+            "coding": [
+              {
+                "code": "diabetes-prevention",
+                "display": "Diabetes Prevention"
+              }
+            ],
+            "text": "Diabetes Prevention"
+          }
+        ],
+        "subject": {
+          "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+          "type": "Patient"
+        },
+        "occurrenceDateTime": "2022-11-03T20:43:57+00:00",
+        "authoredOn": "2022-11-03T20:41:39.521Z",
+        "requester": {
+          "reference": "https://launch.smarthealthit.org/v/r4/fhir/PractitionerRole/1387129"
+        },
+        "performer": [
+          {
+            "reference": "PractitionerRole/638173",
+            "type": "PractitionerRole"
+          }
+        ],
+        "supportingInfo": [
+          {
+            "reference": "Bundle/e22e7f48-cda6-4240-81b2-b9261d24c60c"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Bundle/e22e7f48-cda6-4240-81b2-b9261d24c60c",
+      "resource": {
+        "resourceType": "Bundle",
+        "id": "e22e7f48-cda6-4240-81b2-b9261d24c60c",
+        "identifier": {
+          "system": "urn:bser:request:document",
+          "value": "3bd4f650-1c19-4ba7-a239-f89ca502e401"
+        },
+        "type": "document",
+        "timestamp": "2022-11-03T20:43:57.737+00:00",
+        "entry": [
+          {
+            "fullUrl": "Composition/883646a8-37b4-4b58-87f7-ed69c0b42463",
+            "resource": {
+              "resourceType": "Composition",
+              "id": "883646a8-37b4-4b58-87f7-ed69c0b42463",
+              "meta": {
+                "profile": [
+                  "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralRequestComposition"
+                ]
+              },
+              "status": "final",
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "57133-1",
+                    "display": "Referral note"
+                  }
+                ]
+              },
+              "subject": {
+                "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+                "type": "Patient"
+              },
+              "date": "2022-11-03T20:43:57+00:00",
+              "author": [
+                {
+                  "reference": "https://launch.smarthealthit.org/v/r4/fhir/PractitionerRole/1387129"
+                }
+              ],
+              "title": "Referral request",
+              "section": [
+                {
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/us/bser/CodeSystem/bser",
+                        "code": "RSRSI",
+                        "display": "CompositionSectionRequestSupportingInformation"
+                      }
+                    ]
+                  },
+                  "entry": [
+                    {
+                      "reference": "Bundle/f3f0c725-6385-4e5b-8f69-fa83ded432fa"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "fullUrl": "Bundle/f3f0c725-6385-4e5b-8f69-fa83ded432fa",
+            "resource": {
+              "resourceType": "Bundle",
+              "id": "f3f0c725-6385-4e5b-8f69-fa83ded432fa",
+              "type": "collection",
+              "entry": [
+                {
+                  "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Observation/638968",
+                  "resource": {
+                    "resourceType": "Observation",
+                    "id": "638968",
+                    "meta": {
+                      "versionId": "1",
+                      "profile": [
+                        "http://hl7.org/fhir/StructureDefinition/bp"
+                      ]
+                    },
+                    "status": "final",
+                    "category": [
+                      {
+                        "coding": [
+                          {
+                            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code": "vital-signs"
+                          }
+                        ]
+                      }
+                    ],
+                    "code": {
+                      "coding": [
+                        {
+                          "system": "http://loinc.org",
+                          "code": "85354-9",
+                          "display": "Blood Pressure"
+                        }
+                      ]
+                    },
+                    "subject": {
+                      "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+                      "type": "Patient"
+                    },
+                    "effectiveDateTime": "2022-11-03T20:43:44.557Z",
+                    "component": [
+                      {
+                        "code": {
+                          "coding": [
+                            {
+                              "system": "http://loinc.org",
+                              "code": "8462-4",
+                              "display": "Diastolic blood pressure"
+                            }
+                          ]
+                        },
+                        "valueQuantity": {
+                          "value": 80,
+                          "unit": "mmHg",
+                          "system": "http://unitsofmeasure.org",
+                          "code": "mm[Hg]"
+                        }
+                      },
+                      {
+                        "code": {
+                          "coding": [
+                            {
+                              "system": "http://loinc.org",
+                              "code": "8480-6",
+                              "display": "Systolic Blood Pressure"
+                            }
+                          ]
+                        },
+                        "valueQuantity": {
+                          "value": 120,
+                          "unit": "mmHg",
+                          "system": "http://unitsofmeasure.org",
+                          "code": "mm[Hg]"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Observation/638969",
+                  "resource": {
+                    "resourceType": "Observation",
+                    "id": "638969",
+                    "meta": {
+                      "versionId": "1",
+                      "profile": [
+                        "http://hl7.org/fhir/StructureDefinition/bodyheight"
+                      ]
+                    },
+                    "status": "final",
+                    "category": [
+                      {
+                        "coding": [
+                          {
+                            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code": "vital-signs"
+                          }
+                        ]
+                      }
+                    ],
+                    "code": {
+                      "coding": [
+                        {
+                          "system": "http://loinc.org",
+                          "code": "8302-2",
+                          "display": "Body height"
+                        }
+                      ]
+                    },
+                    "subject": {
+                      "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+                      "type": "Patient"
+                    },
+                    "effectiveDateTime": "2022-11-03T20:43:57+00:00",
+                    "valueQuantity": {
+                      "value": 70,
+                      "unit": "in",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "[in_i]"
+                    }
+                  }
+                },
+                {
+                  "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Observation/638970",
+                  "resource": {
+                    "resourceType": "Observation",
+                    "id": "638970",
+                    "meta": {
+                      "versionId": "1",
+                      "profile": [
+                        "http://hl7.org/fhir/StructureDefinition/bodyweight"
+                      ]
+                    },
+                    "status": "final",
+                    "category": [
+                      {
+                        "coding": [
+                          {
+                            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code": "vital-signs"
+                          }
+                        ]
+                      }
+                    ],
+                    "code": {
+                      "coding": [
+                        {
+                          "system": "http://loinc.org",
+                          "code": "29463-7",
+                          "display": "Body Weight"
+                        }
+                      ]
+                    },
+                    "subject": {
+                      "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+                      "type": "Patient"
+                    },
+                    "effectiveDateTime": "2022-11-03T20:43:57+00:00",
+                    "valueQuantity": {
+                      "value": 192,
+                      "unit": "lb",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "[lb_av]"
+                    }
+                  }
+                },
+                {
+                  "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Observation/638971",
+                  "resource": {
+                    "resourceType": "Observation",
+                    "id": "638971",
+                    "meta": {
+                      "versionId": "1",
+                      "profile": [
+                        "http://hl7.org/fhir/StructureDefinition/bmi"
+                      ]
+                    },
+                    "status": "final",
+                    "category": [
+                      {
+                        "coding": [
+                          {
+                            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code": "vital-signs"
+                          }
+                        ]
+                      }
+                    ],
+                    "code": {
+                      "coding": [
+                        {
+                          "system": "http://loinc.org",
+                          "code": "39156-5",
+                          "display": "Body mass index (BMI) [Ratio]"
+                        }
+                      ]
+                    },
+                    "subject": {
+                      "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+                      "type": "Patient"
+                    },
+                    "effectiveDateTime": "2022-11-03T20:43:57+00:00",
+                    "valueQuantity": {
+                      "value": 27.5,
+                      "unit": "kg/m2",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "kg/m2"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "9e691882-981e-4dd3-af5e-be44d315d715",
+        "meta": {
+          "versionId": "18",
+          "lastUpdated": "2022-08-03T03:05:02.121-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2054-5",
+                  "display": "Black or African American"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Black or African American"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2186-5",
+                  "display": "Not Hispanic or Latino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Not Hispanic or Latino"
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "7019a5c5-41a0-4aa8-9373-d0d6e1100f95"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "MR",
+                  "display": "Medical Record Number"
+                }
+              ],
+              "text": "Medical Record Number"
+            },
+            "system": "http://hospital.smarthealthit.org",
+            "value": "7019a5c5-41a0-4aa8-9373-d0d6e1100f95"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "SS",
+                  "display": "Social Security Number"
+                }
+              ],
+              "text": "Social Security Number"
+            },
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "999-46-9667"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "DL",
+                  "display": "Driver's License"
+                }
+              ],
+              "text": "Driver's License"
+            },
+            "system": "urn:oid:2.16.840.1.113883.4.3.25",
+            "value": "S99936785"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "PPN",
+                  "display": "Passport Number"
+                }
+              ],
+              "text": "Passport Number"
+            },
+            "system": "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+            "value": "X45621707X"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Abreu",
+            "given": [
+              "María del Carmen"
+            ],
+            "prefix": [
+              "Mrs."
+            ]
+          },
+          {
+            "use": "maiden",
+            "family": "Cazares",
+            "given": [
+              "María del Carmen"
+            ],
+            "prefix": [
+              "Mrs."
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-876-9407",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1986-01-01",
+        "address": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/geolocation",
+                "extension": [
+                  {
+                    "url": "latitude",
+                    "valueDecimal": 42.742526
+                  },
+                  {
+                    "url": "longitude",
+                    "valueDecimal": -71.179149
+                  }
+                ]
+              }
+            ],
+            "line": [
+              "1072 Kautzer Path Unit 77"
+            ],
+            "city": "Methuen Town",
+            "state": "Massachusetts",
+            "postalCode": "01841",
+            "country": "US"
+          }
+        ],
+        "maritalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+              "code": "M",
+              "display": "M"
+            }
+          ],
+          "text": "M"
+        },
+        "multipleBirthBoolean": false,
+        "communication": [
+          {
+            "language": {
+              "coding": [
+                {
+                  "system": "urn:ietf:bcp:47",
+                  "code": "es",
+                  "display": "Spanish"
+                }
+              ],
+              "text": "Spanish"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://launch.smarthealthit.org/v/r4/fhir/PractitionerRole/1387129",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "1387129",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2022-07-20T12:17:17.416-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralInitiatorPractitionerRole"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://www.acme.org/practitioners",
+            "value": "23"
+          }
+        ],
+        "active": true,
+        "period": {
+          "start": "2012-01-01",
+          "end": "2012-03-31"
+        },
+        "practitioner": {
+          "reference": "Practitioner/52919099-6a7a-442c-b0d5-2b02c0dd4b74",
+          "display": "Dr Albertine"
+        },
+        "organization": {
+          "reference": "Organization/638965"
+        },
+        "specialty": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "408443003",
+                "display": "General medical practice"
+              }
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "(03) 5555 6473",
+            "use": "work"
+          },
+          {
+            "system": "email",
+            "value": "adam.southern@example.org",
+            "use": "work"
+          }
+        ],
+        "availableTime": [
+          {
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ],
+            "availableStartTime": "09:00:00",
+            "availableEndTime": "16:30:00"
+          },
+          {
+            "daysOfWeek": [
+              "thu",
+              "fri"
+            ],
+            "availableStartTime": "09:00:00",
+            "availableEndTime": "12:00:00"
+          }
+        ],
+        "notAvailable": [
+          {
+            "description": "Adam will be on extended leave during May 2017",
+            "during": {
+              "start": "2017-05-01",
+              "end": "2017-05-20"
+            }
+          }
+        ],
+        "availabilityExceptions": "Adam is generally unavailable on public holidays and during the Christmas/New Year break",
+        "endpoint": [
+          {
+            "reference": "Endpoint/a3681abe-48b3-478f-9e81-7dca82c9f70a"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Practitioner/52919099-6a7a-442c-b0d5-2b02c0dd4b74",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "52919099-6a7a-442c-b0d5-2b02c0dd4b74",
+        "meta": {
+          "versionId": "5",
+          "lastUpdated": "2021-04-07T02:56:52.613-04:00",
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-5-2019"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "93370"
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "family": "Orn",
+            "given": [
+              "Albertine"
+            ],
+            "prefix": [
+              "Dr."
+            ]
+          }
+        ],
+        "address": [
+          {
+            "line": [
+              "66B CONCORD STREET"
+            ],
+            "city": "WILMINGTON",
+            "state": "MA",
+            "postalCode": "1887",
+            "country": "US"
+          }
+        ],
+        "gender": "female"
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Organization/638965",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "638965",
+        "meta": {
+          "versionId": "1",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-Organization"
+          ]
+        },
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "prov",
+                "display": "Healthcare Provider"
+              }
+            ]
+          }
+        ],
+        "name": "Initiator Organization"
+      }
+    },
+    {
+      "fullUrl": "Endpoint/a3681abe-48b3-478f-9e81-7dca82c9f70a",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "a3681abe-48b3-478f-9e81-7dca82c9f70a",
+        "status": "active",
+        "connectionType": {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+          "code": "hl7-fhir-msg"
+        },
+        "payloadType": [
+          {
+            "text": "BSeR Referral Request Message"
+          }
+        ],
+        "address": "https://apps.hdap.gatech.edu/bser-engine/fhir/$process-message"
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/PractitionerRole/638173",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "638173",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2022-09-13T19:49:25.952+00:00",
+          "source": "#0fb5a60a-fa4d-42",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralRecipientPractitionerRole"
+          ]
+        },
+        "organization": {
+          "reference": "Organization/638171",
+          "type": "Organization"
+        },
+        "healthcareService": [
+          {
+            "reference": "HealthcareService/638172",
+            "type": "HealthcareService"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/638170",
+            "type": "Endpoint"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Organization/638171",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "638171",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2022-09-13T19:49:25.952+00:00",
+          "source": "#0fb5a60a-fa4d-42",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-Organization"
+          ]
+        },
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "prov",
+                "display": "Healthcare Provider"
+              }
+            ]
+          }
+        ],
+        "name": "EXAMPLEORG",
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "1-555-555-5555",
+            "use": "work"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Endpoint/638170",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "638170",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2022-09-13T19:49:25.952+00:00",
+          "source": "#0fb5a60a-fa4d-42"
+        },
+        "status": "active",
+        "connectionType": {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+          "code": "hl7-fhir-msg"
+        },
+        "payloadType": [
+          {
+            "text": "BSeR Referral Request Message"
+          }
+        ],
+        "address": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/"
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/HealthcareService/638172",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "id": "638172",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2022-09-13T19:49:25.952+00:00",
+          "source": "#0fb5a60a-fa4d-42"
+        },
+        "providedBy": {
+          "reference": "Organization/638171",
+          "type": "Organization"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "urn:uuid:da3e49a2-b25e-4bf5-98d2-dd9b211dfc0c",
+                "code": "arthritis",
+                "display": "Arthritis"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:uuid:da3e49a2-b25e-4bf5-98d2-dd9b211dfc0c",
+                "code": "diabetes-prevention",
+                "display": "Diabetes Prevention"
+              }
+            ]
+          }
+        ],
+        "communication": [
+          {
+            "coding": [
+              {
+                "system": "urn:ietf:bcp:47",
+                "code": "en",
+                "display": "English"
+              }
+            ],
+            "text": "English"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:ietf:bcp:47",
+                "code": "es",
+                "display": "Spanish"
+              }
+            ],
+            "text": "Spanish"
+          }
+        ],
+        "availableTime": [
+          {
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "17:55:00"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Observation/638967",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "638967",
+        "meta": {
+          "versionId": "1",
+          "profile": [
+            "http://hl7.org/fhir/us/odh/StructureDefinition/odh-EmploymentStatus"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "74165-2",
+              "display": "History of employment status NIOSH"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+          "type": "Patient"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "Employed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/Observation/638966",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "638966",
+        "meta": {
+          "versionId": "1",
+          "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-EducationLevel"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "82589-3"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://launch.smarthealthit.org/v/r4/fhir/Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+          "type": "Patient"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-EducationLevel",
+              "code": "ASSOC",
+              "display": "Associate's or technical degree complete"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

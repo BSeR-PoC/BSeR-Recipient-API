@@ -1,0 +1,607 @@
+{
+    "resourceType": "Bundle",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralMessageBundle"
+        ]
+    },
+    "type": "message",
+    "entry": [
+        {
+            "fullUrl": "MessageHeader/55d42828-ab8a-4369-83bb-8a63a91e2792",
+            "resource": {
+                "resourceType": "MessageHeader",
+                "id": "55d42828-ab8a-4369-83bb-8a63a91e2792",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralMessageHeader"
+                    ]
+                },
+                "eventCoding": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0003",
+                    "code": "I12",
+                    "display": "REF/RRI - Patient referral"
+                },
+                "destination": [
+                    {
+                        "endpoint": "https://apps.hdap.gatech.edu/bser-engine/fhir/$process-message",
+                        "receiver": {
+                            "reference": "PractitionerRole/1387129"
+                        }
+                    }
+                ],
+                "sender": {
+                    "reference": "PractitionerRole/638173"
+                },
+                "source": {
+                    "endpoint": "https://apps.hdap.gatech.edu/cqf-ruler-r4/fhir/$process-message"
+                },
+                "focus": [
+                    {
+                        "reference": "Task/638972"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "Task/638972",
+            "resource": {
+                "resourceType": "Task",
+                "id": "638972",
+                "meta": {
+                    "versionId": "1",
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralTask"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PLAC"
+                                }
+                            ]
+                        },
+                        "system": "urn:bser:request:id",
+                        "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+                        "assigner": {
+                            "reference": "Organization/638965"
+                        }
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "FILL"
+                                }
+                            ]
+                        },
+                        "system": "urn:bser:request:id",
+                        "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+                        "assigner": {
+                            "reference": "Organization/638171"
+                        }
+                    }
+                ],
+                "status": "requested",
+                "businessStatus": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/us/bser/CodeSystem/TaskBusinessStatusCS",
+                            "code": "3.0",
+                            "display": "Service Request Accepted"
+                        }
+                    ]
+                },
+                "intent": "order",
+                "focus": {
+                    "reference": "ServiceRequest/638963"
+                },
+                "authoredOn": "2022-11-03T20:43:57+00:00",
+                "requester": {
+                    "reference": "PractitionerRole/1387129"
+                },
+                "owner": {
+                    "reference": "PractitionerRole/638173",
+                    "type": "PractitionerRole"
+                }
+            }
+        },
+        {
+            "fullUrl": "ServiceRequest/638963",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "id": "638963",
+                "meta": {
+                    "versionId": "3",
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralServiceRequest"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PLAC"
+                                }
+                            ]
+                        },
+                        "system": "urn:bser:request:id",
+                        "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+                        "assigner": {
+                            "reference": "Organization/638965"
+                        }
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "FILL"
+                                }
+                            ]
+                        },
+                        "system": "urn:bser:request:id",
+                        "value": "6c207810-5179-42e5-8b02-d1deaf2af3e9",
+                        "assigner": {
+                            "reference": "Organization/638171"
+                        }
+                    }
+                ],
+                "status": "active",
+                "intent": "order",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "3457005",
+                            "display": "Patient referral (procedure)"
+                        }
+                    ],
+                    "text": "Draft BSeR Referral"
+                },
+                "orderDetail": [
+                    {
+                        "coding": [
+                            {
+                                "code": "diabetes-prevention",
+                                "display": "Diabetes Prevention"
+                            }
+                        ],
+                        "text": "Diabetes Prevention"
+                    }
+                ],
+                "subject": {
+                    "reference": "Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+                    "type": "Patient"
+                },
+                "occurrenceDateTime": "2022-11-03T20:43:57+00:00",
+                "authoredOn": "2022-11-03T20:41:39.521000+00:00",
+                "requester": {
+                    "reference": "PractitionerRole/1387129"
+                },
+                "performer": [
+                    {
+                        "reference": "PractitionerRole/638173",
+                        "type": "PractitionerRole"
+                    }
+                ],
+                "supportingInfo": [
+                    {
+                        "display": "Referral Request Document Bundle Omitted for Simplicity"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "Patient/9e691882-981e-4dd3-af5e-be44d315d715",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "9e691882-981e-4dd3-af5e-be44d315d715",
+                "meta": {
+                    "versionId": "18",
+                    "lastUpdated": "2022-08-03T03:05:02.121000-04:00",
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+                    ]
+                },
+                "extension": [
+                    {
+                        "extension": [
+                            {
+                                "url": "ombCategory",
+                                "valueCoding": {
+                                    "system": "urn:oid:2.16.840.1.113883.6.238",
+                                    "code": "2054-5",
+                                    "display": "Black or African American"
+                                }
+                            },
+                            {
+                                "url": "text",
+                                "valueString": "Black or African American"
+                            }
+                        ],
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+                    },
+                    {
+                        "extension": [
+                            {
+                                "url": "ombCategory",
+                                "valueCoding": {
+                                    "system": "urn:oid:2.16.840.1.113883.6.238",
+                                    "code": "2186-5",
+                                    "display": "Not Hispanic or Latino"
+                                }
+                            },
+                            {
+                                "url": "text",
+                                "valueString": "Not Hispanic or Latino"
+                            }
+                        ],
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "https://github.com/synthetichealth/synthea",
+                        "value": "7019a5c5-41a0-4aa8-9373-d0d6e1100f95"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR",
+                                    "display": "Medical Record Number"
+                                }
+                            ],
+                            "text": "Medical Record Number"
+                        },
+                        "system": "http://hospital.smarthealthit.org",
+                        "value": "7019a5c5-41a0-4aa8-9373-d0d6e1100f95"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "SS",
+                                    "display": "Social Security Number"
+                                }
+                            ],
+                            "text": "Social Security Number"
+                        },
+                        "system": "http://hl7.org/fhir/sid/us-ssn",
+                        "value": "999-46-9667"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "DL",
+                                    "display": "Driver's License"
+                                }
+                            ],
+                            "text": "Driver's License"
+                        },
+                        "system": "urn:oid:2.16.840.1.113883.4.3.25",
+                        "value": "S99936785"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PPN",
+                                    "display": "Passport Number"
+                                }
+                            ],
+                            "text": "Passport Number"
+                        },
+                        "system": "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+                        "value": "X45621707X"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Abreu",
+                        "given": [
+                            "María del Carmen"
+                        ],
+                        "prefix": [
+                            "Mrs."
+                        ]
+                    },
+                    {
+                        "use": "maiden",
+                        "family": "Cazares",
+                        "given": [
+                            "María del Carmen"
+                        ],
+                        "prefix": [
+                            "Mrs."
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-876-9407",
+                        "use": "home"
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1986-01-01",
+                "address": [
+                    {
+                        "extension": [
+                            {
+                                "extension": [
+                                    {
+                                        "url": "latitude",
+                                        "valueDecimal": 42.742526
+                                    },
+                                    {
+                                        "url": "longitude",
+                                        "valueDecimal": -71.179149
+                                    }
+                                ],
+                                "url": "http://hl7.org/fhir/StructureDefinition/geolocation"
+                            }
+                        ],
+                        "line": [
+                            "1072 Kautzer Path Unit 77"
+                        ],
+                        "city": "Methuen Town",
+                        "state": "Massachusetts",
+                        "postalCode": "01841",
+                        "country": "US"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "M",
+                            "display": "M"
+                        }
+                    ],
+                    "text": "M"
+                },
+                "multipleBirthBoolean": false,
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "es",
+                                    "display": "Spanish"
+                                }
+                            ],
+                            "text": "Spanish"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "PractitionerRole/1387129",
+            "resource": {
+                "resourceType": "PractitionerRole",
+                "id": "1387129",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2022-07-20T12:17:17.416000-04:00",
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralInitiatorPractitionerRole"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://www.acme.org/practitioners",
+                        "value": "23"
+                    }
+                ],
+                "active": true,
+                "period": {
+                    "start": "2012-01-01",
+                    "end": "2012-03-31"
+                },
+                "practitioner": {
+                    "reference": "Practitioner/52919099-6a7a-442c-b0d5-2b02c0dd4b74",
+                    "display": "Dr Albertine"
+                },
+                "organization": {
+                    "reference": "Organization/638965"
+                },
+                "specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "408443003",
+                                "display": "General medical practice"
+                            }
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "(03) 5555 6473",
+                        "use": "work"
+                    },
+                    {
+                        "system": "email",
+                        "value": "adam.southern@example.org",
+                        "use": "work"
+                    }
+                ],
+                "availableTime": [
+                    {
+                        "daysOfWeek": [
+                            "mon",
+                            "tue",
+                            "wed"
+                        ],
+                        "availableStartTime": "09:00:00",
+                        "availableEndTime": "16:30:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "thu",
+                            "fri"
+                        ],
+                        "availableStartTime": "09:00:00",
+                        "availableEndTime": "12:00:00"
+                    }
+                ],
+                "notAvailable": [
+                    {
+                        "description": "Adam will be on extended leave during May 2017",
+                        "during": {
+                            "start": "2017-05-01",
+                            "end": "2017-05-20"
+                        }
+                    }
+                ],
+                "availabilityExceptions": "Adam is generally unavailable on public holidays and during the Christmas/New Year break"
+            }
+        },
+        {
+            "fullUrl": "Practitioner/52919099-6a7a-442c-b0d5-2b02c0dd4b74",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "52919099-6a7a-442c-b0d5-2b02c0dd4b74",
+                "meta": {
+                    "versionId": "5",
+                    "lastUpdated": "2021-04-07T02:56:52.613000-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-5-2019"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "93370"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "family": "Orn",
+                        "given": [
+                            "Albertine"
+                        ],
+                        "prefix": [
+                            "Dr."
+                        ]
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "66B CONCORD STREET"
+                        ],
+                        "city": "WILMINGTON",
+                        "state": "MA",
+                        "postalCode": "1887",
+                        "country": "US"
+                    }
+                ],
+                "gender": "female"
+            }
+        },
+        {
+            "fullUrl": "Organization/638965",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "638965",
+                "meta": {
+                    "versionId": "1",
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-Organization"
+                    ]
+                },
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                                "code": "prov",
+                                "display": "Healthcare Provider"
+                            }
+                        ]
+                    }
+                ],
+                "name": "Initiator Organization"
+            }
+        },
+        {
+            "fullUrl": "PractitionerRole/638173",
+            "resource": {
+                "resourceType": "PractitionerRole",
+                "id": "638173",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2022-09-13T19:49:25.952000+00:00",
+                    "source": "#0fb5a60a-fa4d-42",
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralRecipientPractitionerRole"
+                    ]
+                },
+                "organization": {
+                    "reference": "Organization/638171",
+                    "type": "Organization"
+                }
+            }
+        },
+        {
+            "fullUrl": "Organization/638171",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "638171",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2022-09-13T19:49:25.952000+00:00",
+                    "source": "#0fb5a60a-fa4d-42",
+                    "profile": [
+                        "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-Organization"
+                    ]
+                },
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                                "code": "prov",
+                                "display": "Healthcare Provider"
+                            }
+                        ]
+                    }
+                ],
+                "name": "EXAMPLEORG",
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "1-555-555-5555",
+                        "use": "work"
+                    }
+                ]
+            }
+        }
+    ]
+}
