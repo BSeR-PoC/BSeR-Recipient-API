@@ -165,7 +165,7 @@ def set_task_status(task: Task, action: str):
                 }]
             }
         business_status = CodeableConcept(**business_status)
-    elif action.lower() == "cancel".lower():
+    elif action.lower() == "confirmcancellation".lower():
         business_status = {
                 "coding": [{
                     "system": "http://hl7.org/fhir/us/bser/CodeSystem/TaskBusinessStatusCS",
