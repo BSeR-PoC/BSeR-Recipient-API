@@ -4,6 +4,7 @@ from fhir.resources.task import Task
 from fhir.resources.messageheader import MessageHeader
 from fhir.resources.practitionerrole import PractitionerRole
 from fhir.resources.patient import Patient
+from fhir.resources.observation import Observation
 from fhir.resources.servicerequest import ServiceRequest
 from fhir.resources.codeableconcept import CodeableConcept
 import util.bundleparser as parser
@@ -22,7 +23,7 @@ import uuid
 #  Recipient PractitionerRole
 #  Recipient Organization
 
-currently_supported_actions = ["accept", "decline"]
+currently_supported_actions = ["accept", "decline", "updateprogress", "confirmcancellation", "complete"]
 
 service_request_profile = "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralServiceRequest"
 task_profile = "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralTask"
@@ -31,14 +32,15 @@ recipient_practitioner_role_profile = "http://hl7.org/fhir/us/bser/StructureDefi
 
 logger = logging.getLogger("bserfeedbackapi.services.feedback_bundle_builder")
 
-def create_feedback(request_bundle: Bundle, action: str):
+def create_feedback(request_bundle: Bundle, action: str, status_message: str):
+    # Require status_message if action is update progress.
+    if action.lower() == "updateprogress".lower() and not status_message:
+        return oobuilder.build_missing_status_message_operation_outcome()
+
     # Parse Existing Bundle
     # Add list of missing expected resources to return as OperationOutcome
     missing_resources = []
 
-    #service_request = None
-    #patient = None
-    #task = None
     try:
         service_request = parser.find_resource_by_profile(request_bundle, service_request_profile)
         # Remove extraneous Supporting Info for demo purposes, and simplify references.
@@ -68,6 +70,7 @@ def create_feedback(request_bundle: Bundle, action: str):
         initiator_practitioner_role = parser.find_resource_by_profile(request_bundle, initiator_practitioner_role_profile)
         initiator_practitioner_role = PractitionerRole(**parser.simplify_references(initiator_practitioner_role))
         # Strip the Endpoint and Healthcare Services for now for simplicity. No need to echo them back.
+        # TODO: Generalize this for non BSeR Engine created bundles.
         initiator_practitioner_role.healthcareService = None
         initiator_practitioner_role.endpoint = None
     except LookupError as e:
@@ -79,6 +82,7 @@ def create_feedback(request_bundle: Bundle, action: str):
         recipient_practitioner_role = parser.find_resource_by_profile(request_bundle, recipient_practitioner_role_profile)
         recipient_practitioner_role = PractitionerRole(**parser.simplify_references(recipient_practitioner_role))
         # Strip the Endpoint and Healthcare Services for now for simplicity. No need to echo them back.
+        # TODO: Generalize this for non BSeR Engine created bundles.
         recipient_practitioner_role.healthcareService = None
         recipient_practitioner_role.endpoint = None
     except LookupError as e:
@@ -120,6 +124,11 @@ def create_feedback(request_bundle: Bundle, action: str):
         message_bundle = append_entry(message_bundle, service_request)
         message_bundle = append_entry(message_bundle, patient)
         message_bundle = append_entry(message_bundle, initiator_practitioner_role)
+
+        if status_message:
+            referral_activity_status = build_referral_activity_status(status_message, patient)
+            message_bundle = append_entry(message_bundle, referral_activity_status)
+
         for resource in initiator_resources:
             message_bundle = append_entry(message_bundle, resource)
         message_bundle = append_entry(message_bundle, recipient_practitioner_role)
@@ -146,6 +155,25 @@ def set_task_status(task: Task, action: str):
                 }]
             }
         business_status = CodeableConcept(**business_status)
+    elif action.lower() == "updateprogress".lower():
+        # TODO: Maintainence issue with IG, update to granular codes once/if available.
+        business_status = {
+                "coding": [{
+                    "system": "http://hl7.org/fhir/us/bser/CodeSystem/TaskBusinessStatusCS",
+                    "code": "5.x",
+                    "display": "Service Request Event State Change"
+                }]
+            }
+        business_status = CodeableConcept(**business_status)
+    elif action.lower() == "cancel".lower():
+        business_status = {
+                "coding": [{
+                    "system": "http://hl7.org/fhir/us/bser/CodeSystem/TaskBusinessStatusCS",
+                    "code": "6.0",
+                    "display": "Service Request Fulfillment Cancelled"
+                }]
+            }
+        business_status = CodeableConcept(**business_status)
     else:
         raise ValueError(f"{action} is not a supported action. Currently supported: {', '.join(currently_supported_actions)}")
     task.businessStatus = business_status
@@ -165,12 +193,10 @@ def build_bser_message_bundle():
 def build_bser_message_header(initiator_message_header: MessageHeader, task_reference, initiator_reference, recipient_reference):
     profile_url = "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralMessageHeader"
     initiator_endpoint = initiator_message_header.source.endpoint
-    # initiator_reference = initiator_message_header.sender
     recipient_endpoint = initiator_message_header.destination[0].endpoint
-    # recipient_reference = initiator_message_header.destination[0].receiver
     message_header = {}
     message_header["resourceType"] = "MessageHeader"
-    message_header['meta'] = {"profile": [profile_url]}
+    message_header["meta"] = {"profile": [profile_url]}
     message_header["id"] = str(uuid.uuid4())
     message_header["eventCoding"] = {
           "system": "http://terminology.hl7.org/CodeSystem/v2-0003",
@@ -190,6 +216,24 @@ def build_bser_message_header(initiator_message_header: MessageHeader, task_refe
     message_header["focus"] = [task_reference]
     message_header = MessageHeader(**message_header)
     return message_header
+
+# TODO: Replace with fhir.bser once available.
+def build_referral_activity_status(status_message: str, patient: Patient):
+    profile_url = "http://hl7.org/fhir/us/bser/StructureDefinition/BSeR-ReferralActivityStatus"
+    referral_activity_status = {}
+    referral_activity_status["resourceType"] = "Observation"
+    referral_activity_status["meta"] = {"profile": [profile_url]}
+    referral_activity_status["id"] = str(uuid.uuid4())
+    referral_activity_status["status"] = "final"
+    referral_activity_status["code"] = {
+        "coding": [{"system" : "http://snomed.info/sct", "code" : "385641008", "display" : "Action status"}]
+    }
+    referral_activity_status["subject"] = create_reference(patient)
+    referral_activity_status["valueString"] = status_message
+
+    referral_activity_status = Observation(**referral_activity_status)
+    
+    return referral_activity_status
 
 def create_reference(resource):
     resource_type = resource.resource_type

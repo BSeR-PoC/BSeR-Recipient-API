@@ -33,3 +33,20 @@ def build_action_error_operation_outcome(error: str):
     }
     operation_outcome = OperationOutcome(**operation_outcome)
     return operation_outcome
+
+
+def build_missing_status_message_operation_outcome():
+    operation_outcome = {
+        "resourceType": "OperationOutcome",
+        "issue": [
+            {
+                "severity": "error",
+                "code": "required",
+                "details": {
+                    "text": "If updating the progress of a referral(action is 'updateprogress'), a status message must be provided summarizing the event."
+                }
+            }
+        ]
+    }
+    operation_outcome = OperationOutcome(**operation_outcome)
+    return operation_outcome

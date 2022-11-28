@@ -27,9 +27,9 @@ async def root():
 
 
 @app.post("/generate")
-def generate_feedback(bundle: Bundle, action: str):
+def generate_feedback(bundle: Bundle, action: str, statusmessage: str = ""):
     logger.info(f"Received request to generate Feedback Bundle with Action: {action}")
 
     # If error, returns OperationOutcome. Otherwise returns Message Bundle.
-    outcome = create_feedback(bundle, action)
+    outcome = create_feedback(bundle, action, statusmessage)
     return outcome.dict()
